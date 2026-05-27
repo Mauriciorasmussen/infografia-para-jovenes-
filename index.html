@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Balonmano — Infografía</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #E8530A;
+    --orange-light: #FF7A3D;
+    --cream: #F9F4EC;
+    --dark: #1A1208;
+    --mid: #3D2E1A;
+    --accent-blue: #1E6FE8;
+    --accent-teal: #0DA57A;
+    --accent-yellow: #F5C518;
+    --text-muted: #7A6A55;
+    --card-bg: #FFFFFF;
+    --border: rgba(232,83,10,0.18);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--dark);
+    padding: 3rem 2rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: var(--orange);
+    opacity: 0.12;
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--orange);
+    color: #fff;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+    animation: fadeIn 0.6s ease;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 12vw, 9rem);
+    color: #fff;
+    line-height: 0.9;
+    letter-spacing: 2px;
+    animation: slideUp 0.7s ease;
+  }
+  .hero h1 span { color: var(--orange); }
+  .hero-sub {
+    color: rgba(255,255,255,0.55);
+    font-size: 14px;
+    margin-top: 1rem;
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 1px;
+    animation: fadeIn 1s ease;
+  }
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+  .hero-stat {
+    text-align: center;
+    animation: fadeIn 1.2s ease;
+  }
+  .hero-stat .num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.8rem;
+    color: var(--orange-light);
+    display: block;
+    line-height: 1;
+  }
+  .hero-stat .lbl {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-family: 'Space Mono', monospace;
+  }
+
+  /* MAIN GRID */
+  .grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1.25rem;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 1.5px solid var(--border);
+    transition: transform 0.3s cubic-bezier(.34,1.56,.64,1), box-shadow 0.3s ease, border-color 0.3s ease;
+    cursor: default;
+  }
+  .card:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 16px 40px rgba(232,83,10,0.13);
+    border-color: var(--orange);
+  }
+  .card-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 0.6rem;
+    display: block;
+  }
+  .card h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    color: var(--dark);
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.5px;
+  }
+  .card p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+  .card-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+  }
+  .card:hover .card-icon { transform: rotate(-6deg) scale(1.1); }
+
+  /* GRID PLACEMENTS */
+  .c-historia  { grid-column: span 7; }
+  .c-origen    { grid-column: span 5; }
+  .c-campo     { grid-column: span 12; }
+  .c-jugadores { grid-column: span 4; }
+  .c-portero   { grid-column: span 4; }
+  .c-variantes { grid-column: span 4; }
+  .c-timeline  { grid-column: span 12; }
+  .c-tiros     { grid-column: span 6; }
+  .c-cultura   { grid-column: span 6; }
+  .c-footer    { grid-column: span 12; }
+
+  /* HISTORIA */
+  .c-historia { background: var(--dark); color: #fff; }
+  .c-historia .card-tag { color: var(--orange-light); }
+  .c-historia h2 { color: #fff; font-size: 2.4rem; }
+  .c-historia p  { color: rgba(255,255,255,0.65); font-size: 14px; line-height: 1.7; }
+  .c-historia:hover { border-color: var(--orange-light); }
+  .historia-pills {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1rem;
+  }
+  .pill {
+    background: rgba(232,83,10,0.18);
+    color: var(--orange-light);
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-family: 'Space Mono', monospace;
+    transition: background 0.25s, color 0.25s;
+  }
+  .pill:hover { background: var(--orange); color: #fff; }
+
+  /* ORIGEN */
+  .c-origen { background: var(--orange); }
+  .c-origen .card-tag { color: rgba(255,255,255,0.7); }
+  .c-origen h2 { color: #fff; font-size: 2.2rem; }
+  .c-origen p  { color: rgba(255,255,255,0.8); }
+  .c-origen:hover { border-color: #fff; transform: translateY(-6px) scale(1.01); }
+  .origen-year {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem;
+    color: rgba(255,255,255,0.15);
+    line-height: 1;
+    position: absolute; right: 1.5rem; top: 1rem;
+    pointer-events: none;
+  }
+  .c-origen { position: relative; overflow: hidden; }
+
+  /* CAMPO VISUAL */
+  .campo-wrapper {
+    background: #1A4A2E;
+    border-radius: 12px;
+    padding: 2rem 1rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .campo-svg-wrap {
+    display: flex; justify-content: center;
+    margin-bottom: 1rem;
+  }
+  .campo-medidas {
+    display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+  .medida-item {
+    text-align: center;
+    color: rgba(255,255,255,0.8);
+    font-size: 13px;
+  }
+  .medida-item .m-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--accent-yellow);
+    display: block; line-height: 1;
+  }
+  .c-campo { background: #0D2E1A; border-color: rgba(13,165,122,0.3); }
+  .c-campo:hover { border-color: var(--accent-teal); }
+  .c-campo .card-tag { color: var(--accent-teal); }
+  .c-campo h2 { color: #fff; }
+
+  /* JUGADORES, PORTERO, VARIANTES */
+  .jugador-list { list-style: none; margin-top: 0.75rem; }
+  .jugador-list li {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(232,83,10,0.1);
+    font-size: 13.5px;
+    color: var(--text-muted);
+    transition: color 0.2s, padding-left 0.2s;
+  }
+  .jugador-list li:hover { color: var(--orange); padding-left: 6px; }
+  .jugador-list li:last-child { border-bottom: none; }
+  .jugador-list .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--orange); flex-shrink: 0; margin-top: 5px;
+  }
+
+  /* VARIANTES */
+  .variante-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 0.75rem; }
+  .var-item {
+    background: var(--cream);
+    border-radius: 10px;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    transition: background 0.25s, border-color 0.25s, transform 0.25s;
+  }
+  .var-item:hover {
+    background: var(--orange);
+    border-color: var(--orange);
+    transform: scale(1.04);
+  }
+  .var-item:hover .var-name { color: #fff; }
+  .var-item:hover .var-desc { color: rgba(255,255,255,0.75); }
+  .var-name { font-weight: 700; font-size: 12px; color: var(--dark); margin-bottom: 2px; }
+  .var-desc { font-size: 11px; color: var(--text-muted); line-height: 1.4; }
+
+  /* TIMELINE */
+  .timeline {
+    display: flex; gap: 0;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    margin-top: 1rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--orange) transparent;
+  }
+  .tl-item {
+    flex: 0 0 auto;
+    min-width: 170px;
+    padding: 1rem;
+    border-left: 2px solid var(--border);
+    position: relative;
+    transition: background 0.25s, border-color 0.25s;
+    border-radius: 0 8px 8px 0;
+    cursor: default;
+  }
+  .tl-item:hover {
+    background: rgba(232,83,10,0.07);
+    border-color: var(--orange);
+  }
+  .tl-item:hover .tl-year { color: var(--orange); }
+  .tl-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--orange);
+    position: absolute; left: -6px; top: 1.2rem;
+    transition: transform 0.25s;
+  }
+  .tl-item:hover .tl-dot { transform: scale(1.5); }
+  .tl-year {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    display: block; line-height: 1;
+    transition: color 0.25s;
+  }
+  .tl-title { font-size: 12px; font-weight: 700; color: var(--dark); margin: 4px 0 2px; }
+  .tl-desc  { font-size: 11px; color: var(--text-muted); line-height: 1.45; }
+  .c-timeline .card-tag { color: var(--accent-blue); }
+  .c-timeline h2 { color: var(--dark); }
+
+  /* TIROS */
+  .tiros-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 0.75rem; }
+  .tiro-item {
+    background: var(--cream);
+    border-radius: 12px;
+    padding: 1rem;
+    border: 1.5px solid var(--border);
+    transition: all 0.3s cubic-bezier(.34,1.56,.64,1);
+  }
+  .tiro-item:hover {
+    background: var(--dark);
+    border-color: var(--orange);
+    transform: scale(1.05) rotate(-1deg);
+  }
+  .tiro-item:hover .tiro-name { color: var(--orange-light); }
+  .tiro-item:hover .tiro-desc { color: rgba(255,255,255,0.65); }
+  .tiro-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    color: rgba(232,83,10,0.15);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .tiro-name { font-weight: 700; font-size: 13px; color: var(--dark); margin-bottom: 4px; transition: color 0.25s; }
+  .tiro-desc { font-size: 12px; color: var(--text-muted); line-height: 1.45; transition: color 0.25s; }
+
+  /* CULTURA */
+  .cultura-stat {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--border);
+    transition: padding-left 0.2s;
+  }
+  .cultura-stat:hover { padding-left: 8px; }
+  .cultura-stat:last-child { border-bottom: none; }
+  .c-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--orange);
+    min-width: 70px;
+    line-height: 1;
+  }
+  .c-info { font-size: 13px; color: var(--text-muted); line-height: 1.4; }
+  .c-info strong { color: var(--dark); }
+
+  /* FOOTER */
+  .c-footer {
+    background: var(--dark);
+    text-align: center;
+    padding: 1.5rem;
+    border-radius: 16px;
+    border-color: rgba(255,255,255,0.08);
+  }
+  .c-footer p { color: rgba(255,255,255,0.4); font-size: 12px; font-family: 'Space Mono', monospace; }
+  .c-footer strong { color: var(--orange-light); }
+
+  @keyframes fadeIn  { from { opacity:0; } to { opacity:1; } }
+  @keyframes slideUp { from { opacity:0; transform: translateY(30px); } to { opacity:1; transform: translateY(0); } }
+
+  @media (max-width: 768px) {
+    .c-historia, .c-origen, .c-jugadores, .c-portero, .c-variantes,
+    .c-tiros, .c-cultura { grid-column: span 12; }
+    .variante-grid { grid-template-columns: 1fr; }
+    .tiros-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-badge">Infografía deportiva · 2024</div>
+  <h1>BALON<span>MANO</span></h1>
+  <p class="hero-sub">todo lo que necesitas saber del deporte más dinámico del mundo</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><span class="num">19M</span><span class="lbl">jugadores mundiales</span></div>
+    <div class="hero-stat"><span class="num">60'</span><span class="lbl">duración partido</span></div>
+    <div class="hero-stat"><span class="num">7 vs 7</span><span class="lbl">jugadores por equipo</span></div>
+    <div class="hero-stat"><span class="num">40×20</span><span class="lbl">metros de cancha</span></div>
+  </div>
+</header>
+
+<!-- GRID -->
+<main class="grid">
+
+  <!-- HISTORIA -->
+  <div class="card c-historia">
+    <span class="card-tag">// historia</span>
+    <h2>El deporte con más de 4,000 años de historia</h2>
+    <p>Las primeras evidencias de un juego similar al balonmano fueron encontradas en Egipto alrededor del 2000 a.C., donde sacerdotes eran representados jugando en paredes de tumbas. En la Europa medieval se popularizó entre nobleza y pueblo. Ya en el siglo XIX tomó forma moderna en Escandinavia y Alemania, primero con 11 jugadores al aire libre; luego evolucionó al formato de interior con 7 jugadores que conocemos hoy.</p>
+    <div class="historia-pills">
+      <span class="pill">Egipto 2000 a.C.</span>
+      <span class="pill">Europa Medieval</span>
+      <span class="pill">Escandinavia 1900s</span>
+      <span class="pill">Olimpiadas 1936</span>
+      <span class="pill">IHF 1946</span>
+    </div>
+  </div>
+
+  <!-- ORIGEN MODERNO -->
+  <div class="card c-origen">
+    <span class="card-tag">// origen moderno</span>
+    <div class="origen-year">1917</div>
+    <h2>Nacimiento oficial</h2>
+    <p>En 1917, Max Heiser, Karl Schelenz y Erich Konigh publicaron las primeras reglas oficiales en Alemania. El primer partido oficial bajo estas reglas se jugó ese mismo año. En 1925 ocurrió el primer partido internacional masculino (Alemania vs. Bélgica) y en 1930 el primer encuentro femenino internacional.</p>
+  </div>
+
+  <!-- CAMPO -->
+  <div class="card c-campo">
+    <span class="card-tag">// la cancha</span>
+    <h2>El Campo de Juego</h2>
+    <div class="campo-wrapper">
+      <div class="campo-svg-wrap">
+        <svg viewBox="0 0 700 320" width="100%" style="max-width:680px" xmlns="http://www.w3.org/2000/svg">
+          <!-- cancha base -->
+          <rect x="40" y="30" width="620" height="260" rx="6" fill="#2A6B42" stroke="#4CAF76" stroke-width="2"/>
+          <!-- línea central -->
+          <line x1="350" y1="30" x2="350" y2="290" stroke="#4CAF76" stroke-width="1.5" stroke-dasharray="6,4"/>
+          <!-- área portería izquierda 6m -->
+          <path d="M40,100 Q155,100 155,160 Q155,220 40,220" fill="none" stroke="#7ECFA0" stroke-width="1.5"/>
+          <!-- área portería derecha 6m -->
+          <path d="M660,100 Q545,100 545,160 Q545,220 660,220" fill="none" stroke="#7ECFA0" stroke-width="1.5"/>
+          <!-- línea 9m izquierda (punteada) -->
+          <path d="M40,70 Q205,70 205,160 Q205,250 40,250" fill="none" stroke="#7ECFA0" stroke-width="1" stroke-dasharray="5,4" opacity="0.6"/>
+          <!-- línea 9m derecha (punteada) -->
+          <path d="M660,70 Q495,70 495,160 Q495,250 660,250" fill="none" stroke="#7ECFA0" stroke-width="1" stroke-dasharray="5,4" opacity="0.6"/>
+          <!-- portería izquierda -->
+          <rect x="22" y="138" width="18" height="44" rx="2" fill="none" stroke="#F5C518" stroke-width="2"/>
+          <!-- portería derecha -->
+          <rect x="660" y="138" width="18" height="44" rx="2" fill="none" stroke="#F5C518" stroke-width="2"/>
+          <!-- punto 7m izquierdo -->
+          <circle cx="115" cy="160" r="4" fill="#FF7A3D"/>
+          <!-- punto 7m derecho -->
+          <circle cx="585" cy="160" r="4" fill="#FF7A3D"/>
+          <!-- etiquetas -->
+          <text x="350" y="22" text-anchor="middle" fill="#7ECFA0" font-family="'Space Mono',monospace" font-size="11" letter-spacing="2">40 METROS</text>
+          <text x="16" y="165" text-anchor="middle" fill="#7ECFA0" font-family="'Space Mono',monospace" font-size="10" transform="rotate(-90,16,165)">20 M</text>
+          <text x="350" y="305" text-anchor="middle" fill="#4CAF76" font-family="'Space Mono',monospace" font-size="10">LÍNEA CENTRAL</text>
+          <text x="115" y="185" text-anchor="middle" fill="#FF7A3D" font-family="'Space Mono',monospace" font-size="9">7M</text>
+          <text x="585" y="185" text-anchor="middle" fill="#FF7A3D" font-family="'Space Mono',monospace" font-size="9">7M</text>
+          <text x="155" y="155" text-anchor="middle" fill="#7ECFA0" font-family="'Space Mono',monospace" font-size="9">6M</text>
+          <text x="545" y="155" text-anchor="middle" fill="#7ECFA0" font-family="'Space Mono',monospace" font-size="9">6M</text>
+        </svg>
+      </div>
+      <div class="campo-medidas">
+        <div class="medida-item"><span class="m-num">40m</span>largo de la cancha</div>
+        <div class="medida-item"><span class="m-num">20m</span>ancho de la cancha</div>
+        <div class="medida-item"><span class="m-num">6m</span>área de portería</div>
+        <div class="medida-item"><span class="m-num">7m</span>línea de penalti</div>
+        <div class="medida-item"><span class="m-num">3×2m</span>tamaño portería</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JUGADORES -->
+  <div class="card c-jugadores">
+    <span class="card-tag">// posiciones</span>
+    <div class="card-icon" style="background:rgba(232,83,10,0.1)">🏃</div>
+    <h2>Jugadores</h2>
+    <p style="margin-bottom:0.5rem">7 por equipo, distintos roles y físicos según su posición.</p>
+    <ul class="jugador-list">
+      <li><span class="dot"></span>Central — dirige el juego, visión táctica</li>
+      <li><span class="dot"></span>Extremos — velocidad máxima, tiro en ángulo cerrado</li>
+      <li><span class="dot"></span>Pivote — físico potente, trabaja dentro del área</li>
+      <li><span class="dot"></span>Laterales — potencia de tiro, 1,95–2,00m altura</li>
+      <li><span class="dot"></span>Portero — reflejos, liderazgo defensivo</li>
+    </ul>
+  </div>
+
+  <!-- PORTERO -->
+  <div class="card c-portero">
+    <span class="card-tag">// rol clave</span>
+    <div class="card-icon" style="background:rgba(30,111,232,0.1)">🧤</div>
+    <h2>El Portero</h2>
+    <p>Pieza fundamental del equipo. No sólo para defender: casi todos los contraataques nacen desde sus manos. Necesita rapidez, agilidad, reflejos élite y sangre fría. Su jugada más importante es el penalti de 7 metros. Un gran portero puede cambiar el resultado de cualquier partido.</p>
+  </div>
+
+  <!-- VARIANTES -->
+  <div class="card c-variantes">
+    <span class="card-tag">// tipos</span>
+    <div class="card-icon" style="background:rgba(13,165,122,0.1)">🏖</div>
+    <h2>Variantes del Juego</h2>
+    <p style="margin-bottom:0.5rem">El balonmano se adapta a distintos contextos.</p>
+    <div class="variante-grid">
+      <div class="var-item">
+        <div class="var-name">Sala / Indoor</div>
+        <div class="var-desc">Formato olímpico, 7 vs 7 en cancha cubierta</div>
+      </div>
+      <div class="var-item">
+        <div class="var-name">Beach</div>
+        <div class="var-desc">Arena, 4 vs 4, jugadas acrobáticas doble punto</div>
+      </div>
+      <div class="var-item">
+        <div class="var-name">Mini</div>
+        <div class="var-desc">Para niños, reglas simplificadas</div>
+      </div>
+      <div class="var-item">
+        <div class="var-name">Walking</div>
+        <div class="var-desc">Versión suave para adultos mayores</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="card c-timeline">
+    <span class="card-tag">// línea de tiempo</span>
+    <h2>Hitos históricos</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <span class="tl-year">2000<br>a.C.</span>
+        <div class="tl-title">Primeras evidencias</div>
+        <div class="tl-desc">Sacerdotes egipcios jugando en paredes de tumbas</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <span class="tl-year">1917</span>
+        <div class="tl-title">Reglas oficiales</div>
+        <div class="tl-desc">Heiser, Schelenz y Konigh publican las primeras reglas</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <span class="tl-year">1925</span>
+        <div class="tl-title">1er int. masculino</div>
+        <div class="tl-desc">Alemania vs. Bélgica, primer partido internacional</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <span class="tl-year">1930</span>
+        <div class="tl-title">1er int. femenino</div>
+        <div class="tl-desc">Primer encuentro internacional de mujeres</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <span class="tl-year">1936</span>
+        <div class="tl-title">Juegos Olímpicos</div>
+        <div class="tl-desc">Debut masculino en Berlín 1936 (campo)</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <span class="tl-year">1946</span>
+        <div class="tl-title">Fundación IHF</div>
+        <div class="tl-desc">Creación de la Federación Internacional de Balonmano</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <span class="tl-year">1972</span>
+        <div class="tl-title">Indoor olímpico</div>
+        <div class="tl-desc">Munich: debut del formato sala en los Juegos</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <span class="tl-year">1976</span>
+        <div class="tl-title">Mujeres olímpicas</div>
+        <div class="tl-desc">Montreal: debut femenino en los Juegos Olímpicos</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <span class="tl-year">1994</span>
+        <div class="tl-title">Beach handball</div>
+        <div class="tl-desc">Debut del balonmano playa en Noordwijk</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <span class="tl-year">Hoy</span>
+        <div class="tl-title">19M jugadores</div>
+        <div class="tl-desc">Presencia mundial, creciendo en Asia y Latinoamérica</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIROS -->
+  <div class="card c-tiros">
+    <span class="card-tag">// técnica de lanzamiento</span>
+    <div class="card-icon" style="background:rgba(245,197,24,0.12)">🎯</div>
+    <h2>Tipos de Tiro</h2>
+    <p style="margin-bottom:0.75rem">Cada lanzamiento tiene un propósito táctico específico.</p>
+    <div class="tiros-grid">
+      <div class="tiro-item">
+        <div class="tiro-num">01</div>
+        <div class="tiro-name">Suspensión</div>
+        <div class="tiro-desc">El jugador salta para superar la defensa en altura y lanza al caer</div>
+      </div>
+      <div class="tiro-item">
+        <div class="tiro-num">02</div>
+        <div class="tiro-name">Salto</div>
+        <div class="tiro-desc">Gana longitud y supera la barrera defensiva por arriba</div>
+      </div>
+      <div class="tiro-item">
+        <div class="tiro-num">03</div>
+        <div class="tiro-name">Apoyo</div>
+        <div class="tiro-desc">Un pie en el suelo permite amagar y corregir el tiro en el último instante</div>
+      </div>
+      <div class="tiro-item">
+        <div class="tiro-num">04</div>
+        <div class="tiro-name">Cadera</div>
+        <div class="tiro-desc">Disparo desde abajo ocultando el balón: sorpresa total al portero</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CULTURA -->
+  <div class="card c-cultura">
+    <span class="card-tag">// impacto global</span>
+    <div class="card-icon" style="background:rgba(13,165,122,0.1)">🌍</div>
+    <h2>Impacto Cultural</h2>
+    <p style="margin-bottom:1rem">Más que un deporte: un espejo de valores colectivos.</p>
+    <div class="cultura-stat">
+      <span class="c-num">19M</span>
+      <div class="c-info"><strong>jugadores activos en el mundo</strong> — crecimiento sostenido en Asia y América del Sur</div>
+    </div>
+    <div class="cultura-stat">
+      <span class="c-num">204</span>
+      <div class="c-info"><strong>países miembros de la IHF</strong> — uno de los deportes con mayor representación global</div>
+    </div>
+    <div class="cultura-stat">
+      <span class="c-num">1991</span>
+      <div class="c-info"><strong>fundación de la EHF</strong> — Europa sigue siendo el centro competitivo mundial</div>
+    </div>
+    <div class="cultura-stat">
+      <span class="c-num">35+</span>
+      <div class="c-info"><strong>goles por partido en promedio</strong> — uno de los deportes de equipo con más anotaciones</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="card c-footer">
+    <p>Infografía creada por <strong>Mauricio Grados</strong> · Fuentes: International Handball Federation (IHF), Stanford STORM, EHF · 2024</p>
+  </div>
+
+</main>
+</body>
+</html>
